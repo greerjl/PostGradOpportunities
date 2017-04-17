@@ -4,6 +4,8 @@ package dbUtil;
 // You need to import the java.sql package to use JDBC methods and classes
 import java.sql.*;
 
+import com.mysql.jdbc.Connection;
+
 /**
  * @author Dr. Blaha
  * 
@@ -42,9 +44,9 @@ public class Utilities {
 	public void openDB() {
 
 		// Connect to the database
-		String url = "jdbc:mysql://mal.cs.plu.edu:3306/company367_2017";
-		String username = "";
-		String password = "";
+		String url = "jdbc:mysql://mal.cs.plu.edu:3306/ff367_2017";
+		String username = "ff367";
+		String password = "ff367";
 
 		try {
 			conn = DriverManager.getConnection(url, username, password);

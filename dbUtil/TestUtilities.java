@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  * @author Dr. Blaha
- * 
+ * @authors Jayme Greer, Ryan Bolen
  */
 public class TestUtilities {
 

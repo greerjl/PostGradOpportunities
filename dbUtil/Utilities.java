@@ -1,10 +1,5 @@
 package dbUtil;
-/**
- * This class provides some basic methods for accessing a MySQL DB.
- * It uses Java JDBC and MySQL JDBC driver, mysql-connector-java-5.1.18-bin.jar
- * to open an modify the DB.
- * 
- */
+
 
 // You need to import the java.sql package to use JDBC methods and classes
 import java.sql.*;

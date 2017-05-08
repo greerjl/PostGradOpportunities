@@ -22,7 +22,7 @@
       background-color: #f9f9f9;
   }
   </style>
-<title>Company</title>
+<title>Future Finders</title>
 </head>
 
 <body>
@@ -74,7 +74,7 @@
 <header class="w3-container w3-theme w3-padding" id="myHeader">
   <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i> 
   <div class="w3-center">
-  <h1 class="w3-xxxlarge w3-animate-bottom">Company Interface</h1>
+  <h1 class="w3-xxxlarge w3-animate-bottom">Future Finders Interface</h1>
   </div>
 </header>
 
@@ -116,7 +116,7 @@
 		<h2>About</h2>
 	</header>
 	<div class="w3-padding w3-white w3-display-container">
-  		<p>This interface is used to connect to the Company database: ff367. </p>
+  		<p>This interface is used to connect to the Future Finders database: ff367. </p>
   		<p>Once connected, the user can fill out forms to insert, delete or modify what is currently stored.</p>
   		<p>We also have the capability to make complex reports so you can find exactly what you are looking for.</p>
 	</div>	
@@ -134,7 +134,7 @@
     <a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">
     <i class="fa fa-chevron-circle-up"></i></span></a>
   </div>
-  <p>Created by Jayme Greer for CSCI 367 Spring 2017 using W3schools Templates</p>
+  <p>Created by Ryan Bolen, Jayme Greer, Carson Ketter, Nathan Kosylo, and Caleb Ice for CSCI 367 Spring 2017 using W3schools Templates</p>
 </footer>
 
 <!-- Script for Sidebar-->

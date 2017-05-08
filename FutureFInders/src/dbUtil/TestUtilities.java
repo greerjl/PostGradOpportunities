@@ -1,4 +1,4 @@
-package futureFinder;
+package dbUtil;
 /**
  * This program is used to test the Utilities class
  */

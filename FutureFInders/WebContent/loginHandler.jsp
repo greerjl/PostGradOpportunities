@@ -17,7 +17,7 @@ Password: <%= request.getParameter("psw") %>
 	String userName = request.getParameter("usrname");
 	String password = request.getParameter("psw");
 	out.println("The current value of conn: " + myUtil.getConn() + "<br>");
-	myUtil.openDB(userName, password);
+	myUtil.openDatabase(userName, password, true);
 	out.println("The value of conn after open: " + myUtil.getConn()+ "<br>");
 %>
 

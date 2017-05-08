@@ -1,4 +1,4 @@
-package futureFinder;
+package dbUtil;
 /**
  * This class establishes the basic methods to be used in Database management, and the 6 use cases
  * established in previous deliverables, as well as helper methods
@@ -58,6 +58,26 @@ public class Utilities {
 		}
 
 	}// openDB
+	
+	/**  
+	 * 1 Write and Test
+	 * Overload the open method that opens a MySQL DB with the user name 
+	 * and password given as input.
+	 * 
+	 * @param username is a String that is the DB account username
+	 * @param password is a String that is the password the account
+	 */
+	public void openDatabase(String username, String password, boolean offCampus){
+		//School
+		String url = "jdbc:mysql://mal.cs.plu.edu:3306/ff367_2017";
+		//Home
+		if(offCampus){ url = "jdbc:mysql://localhost:2000/ff367_2017";}
+		try {
+			conn = DriverManager.getConnection(url, username, password);
+		} catch (SQLException e) {
+			System.out.println("Error connecting to database: " + e.toString());
+		}
+	}
 
 	/**
 	 * Close the connection to the DB

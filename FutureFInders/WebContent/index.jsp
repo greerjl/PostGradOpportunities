@@ -22,7 +22,7 @@
       background-color: #f9f9f9;
   }
   </style>
-<title>Company</title>
+<title>Future Finders</title>
 </head>
 
 <body>

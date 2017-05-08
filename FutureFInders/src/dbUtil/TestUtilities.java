@@ -1,4 +1,4 @@
-package dbUtil;
+package futureFinder;
 /**
  * This program is used to test the Utilities class
  */
@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  * @author Dr. Blaha
- * @author Jayme Greer
+ * @author FutureFinders367
  */
 public class TestUtilities {
 
@@ -33,63 +33,53 @@ public class TestUtilities {
 				openDefault();
 				break;
 			}
+			/*USE CASE 1*/
 			case 2: {
-				callGetNameSalary();
+				callAddJob();
 				break;
 			}
+			/*USE CASE 2*/
 			case 3: {
-				callMatchName();
+				callGetAllFullTimeJobs();
 				break;
 			}
+			/*USE CASE 3*/
 			case 4: {
-				callEmployeeByDNO();
+				callInsertBookmark();
 				break;
 			}
+			/*USE CASE 4*/
 			case 5: {
-				openCustom();
+				callUpdateTuitionCost();
 				break;
 			}
+			/*USE CASE 5*/
 			case 6: {
-				callEmployeeOnProjectByDNO();
+				callGetUserBookmarks();
 				break;
 			}
+			/*USE CASE 6*/
 			case 7: {
-				callProjectDetails();
+				callDeleteOpportunity();
 				break;
 			}
 			case 8: {
-				callWorksWith();
 				break;
 			}
 			case 9: {
-				callLazyEmps();
+				callGetCompId();
 				break;
 			}
 			case 10: {
-				callInsertWorksOn();
-				break;
-			}
-			case 11: {
-				callUpdateWorksOn();
-				break;
-			}
-			case 12: {
-				callDeleteFromWorksOn();
-				break;
-			}
-			case 13: {
-				callAddDeptLoc();
-				break;
-			}
-			case 14: {
 				testObj.closeDB(); //close the DB connection 
 				break;
 			}
-			case 15: {
+			case 11: {
 				done = true;
 				System.out.println("Good bye");
 				break;
 			}
+
 			}// switch
 		}
 
@@ -97,33 +87,28 @@ public class TestUtilities {
 
 	static void displaymenu() {
 		System.out.println("1)  open default DB");
-		System.out.println("2)  call getNameSalary()");
-		System.out.println("3)  call matchLastName(String)");
-		System.out.println("4)  call employeeByDNO()");
-		System.out.println("5)  open DB(String, String)");
-		System.out.println("6)  call employeeOnProjectByDNO(int)");
-		System.out.println("7)  call projectDetails() ");
-		System.out.println("8)  call worksWith");
-		System.out.println("9)  call lazyEmps");
-		System.out.println("10) call insertWorksOn");
-		System.out.println("11) call updateWorksOn");
-		System.out.println("12) call deleteFromWorksOn");
-		System.out.println("13) call addDeptLoc");
-		System.out.println("14) close the DB");
-		System.out.println("15) quit");
+		System.out.println("2)  call addJob(String, float, String, String, date)");
+		System.out.println("3)  call getAllFullTimeJobs()");
+		System.out.println("4)  call addBookmark(int, int)");
+		System.out.println("5)  call updateTuitionCost(double, int)");
+		System.out.println("6)  call getUserBookmarks(int)");
+		System.out.println("7)  call deleteJob(int)");
+		System.out.println("9)  call getCompId(String name)");
+		System.out.println("10) call closeDB()");
+		System.out.println("11) quit");
 	}
 
 	static int getChoice() {
 		String input;
 		int i = 0;
-		while (i < 1 || i > 15) {
+		while (i < 1 || i > 11) {
 			try {
-				System.out.print("Please enter an integer between 1-15: ");
+				System.out.print("Please enter an integer between 1-11: ");
 				input = keyboard.nextLine();
 				i = Integer.parseInt(input);
 				System.out.println();
 			} catch (NumberFormatException e) {
-				System.out.println("I SAID AN INTEGER!!!!");
+				System.out.println("Integers only.");
 			}
 		}
 		return i;
@@ -134,175 +119,126 @@ public class TestUtilities {
 		testObj.openDB();
 	}
 
-	// test getNameSalary() method
-	static void callGetNameSalary() throws SQLException {
-		ResultSet rs;
-		System.out.println("Research Department Employees");
+	/**
+	 * Helper method that creates an opportunity any time Job,Internship, or Grad_school is created
+	 * @param type The Enum type to determine the Table to connect to
+	 * @throws SQLException if the company does not exist, or if an incorrect date format
+	 */
+	static int callInsertOpp(String type) throws SQLException{		
+		System.out.print("Please enter the company name: ");
+		String compName = keyboard.nextLine();
+		
+		System.out.print("Please enter expiration date (yyyy-mm-dd): ");
+		String expirDate = keyboard.nextLine();
+		
+		System.out.print("Please enter a description: ");
+		String description = keyboard.nextLine();
+		//test
+		int result = testObj.insertOpportunity(expirDate, compName, description, type);
+		return result;
+	}
+	
+	/* test method for Use Case 1 */
+	static void callAddJob() throws SQLException {
+		int rs;
+		
+		int oppId = callInsertOpp("Job");
+		System.out.print("Please enter a job title: ");
+		String job_title = keyboard.nextLine();
+		
+		System.out.print("Please enter a salary: ");
+		String sal = keyboard.nextLine();
+		double salary = Double.parseDouble(sal);
+		
+		System.out.print("Please enter requirements: ");
+		String requirements = keyboard.nextLine();
+		
+		System.out.print("Please enter job type (Full-time or Part-time): ");
+		String job_type = keyboard.nextLine();
+		
+		System.out.print("Please enter start date: ");
+		String date = keyboard.nextLine();	
+		
+		System.out.println("New Job");
 		System.out.println("*****************************");
-		System.out.printf("LastName, FirstName        Salary\n");
-		rs = testObj.getNameSalary();
-		while (rs.next()) {
-			System.out.printf("%-26s %s \n", rs.getString(1) + ", " + rs.getString(2), 
-					                         rs.getString(3));
-		}
-	}
-
-	// test matchName() method
-	static void callMatchName() throws SQLException {
-		ResultSet rs;
-		String target;
-		target = "K";
-		System.out.println("\nEmployees with name that starts with " + target);
-		System.out.println("***************************************************");
-		System.out.printf("%-12s  %s\n", "Dept Number",   "LastName, FirstName");
-		rs = testObj.matchLastName(target);
-		while (rs.next()) {
-			System.out.printf("    %-8s    %s\n", rs.getString(1), 
-					rs.getString(2) + ", " + rs.getString(3));
-		}
-	}
-	
-	 
-	//test employeeByDNO() method 
-	static void callEmployeeByDNO() throws SQLException {
-		ResultSet rs;
-		System.out.print("Please enter a department number: ");
-		String input = keyboard.nextLine();
-		int dno= Integer.parseInt(input); 
-		System.out.println("\nEmployees that work in department " + dno); 
-		System.out.println("*******************************************");
-		System.out.printf("%-12s   %s\n", "Dept Number",   "LastName, FirstName");
-		rs = testObj.employeeByDNO(dno); 
-		while(rs.next()){ 
-			System.out.printf("    %-8s     %s\n", rs.getString(1), 
-					rs.getString(2) + ", " + rs.getString(3));
-		}
-		
-	}
-	
-	//test openDB overload -- WORKS
-	static void openCustom() {
-		System.out.println("Using jdbc:mysql://mal.cs.plu.edu:3306/company367_2017");
-		System.out.println("Please enter your username: ");
-		String username = keyboard.nextLine();
-		System.out.println("Pleaes enter your password: ");
-		String password = keyboard.nextLine();
-		testObj.openDB(username, password);
-	}
-	
-	//test employeeOnProjectByDNO() method -- WORKS PRINT F IS AWFUL
-	static void callEmployeeOnProjectByDNO() throws SQLException {
-		ResultSet rs;
-		System.out.println("Please enter a department number: ");
-		String input = keyboard.nextLine();
-		int dno= Integer.parseInt(input); 
-		System.out.println("\nEmployees that work on a project controlled by department " + dno); 
-		System.out.println("****************************************************************");
-		System.out.printf("%-12s %s\n","LastName FirstName", "Project Number Hours");
-		rs = testObj.employeeOnProjectByDNO(dno);
-		while(rs.next()){ 
-			System.out.printf("%-1s	%s\n",rs.getString(1),
-					rs.getString(2) +"            "+ rs.getString(3)+ "         "+ rs.getString(4));
-		}
-		
-	}
-	
-	//test projectDetails() method -- WORKS PRINT F IS AWFUL
-	static void callProjectDetails() throws SQLException {
-		ResultSet rs;
-		System.out.println("\nProject details " ); 
-		System.out.println("*********************************");
-		System.out.printf("%-12s %-8s\n","# Employees","Total Hours     Avg Hours");
-		rs = testObj.projectDetails();
-		while(rs.next()){ 
-			System.out.printf("%s	%s\n",rs.getString(1),
-					rs.getString(2) +"            "+ rs.getString(3));
-		}
-	}
-
-	//test worksWith() method -- WORKING
-	static void callWorksWith() throws SQLException {
-		ResultSet rs;
-		System.out.println("Please enter employee first name: ");
-		String fname = keyboard.nextLine();
-		System.out.println("Please enter employee last name: ");
-		String lname = keyboard.nextLine();
-		System.out.println("\nEmployees that work with " + fname + " " + lname);
-		System.out.println("****************************************************************");
-		rs = testObj.worksWith(fname, lname);
-		while(rs.next()){ 
-			System.out.printf("%s	%s\n",rs.getString(1),
-					rs.getString(2) +"            "+ rs.getString(3) + rs.getString(4));
-		}
-	}
-	
-	//test lazyEmps() method -- WORKING
-	static void callLazyEmps() throws SQLException {
-		ResultSet rs;
-		System.out.println("\nEmployees that aren't working on projects " ); 
-		System.out.println("*********************************");
-		System.out.printf("%-12s %-8s\n","LastName, FirstName","Salary");
-		rs = testObj.lazyEmps();
-		while(rs.next()){ 
-			System.out.printf("%s	%s\n",rs.getString(1), rs.getString(2));
-		}
-	}
-	
-	//test insertWorksOn() method -- 
-	static void callInsertWorksOn() throws SQLException {
-		int rs;
-		System.out.println("Please enter essn to add to works on: ");
-		String essn = keyboard.nextLine();
-		System.out.println("Please enter project number: ");
-		String pno = keyboard.nextLine();
-		System.out.println("Please enter number of hours: ");
-		String hours = keyboard.nextLine();
-		
-		String [][] data = {{essn},{pno},{hours}};
-
-		rs = testObj.insertWorksOn(data);
+		rs = testObj.addJob(oppId, job_title, salary, requirements, job_type, date);
 		System.out.println(rs);
+	}	
+	
+	/*USE CASE 2*/
+	static void callGetAllFullTimeJobs() throws SQLException {
+		ResultSet rs;
+		System.out.println("\nList of all full time jobs " ); 
+		System.out.println("*********************************");
+		System.out.printf("%-12s %-8s\n","Opp_id" ,"Job title","Start date");
+		rs = testObj.getAllFullTimeJobs();
+		while(rs.next()){ 
+			System.out.printf("%s	%s\n",rs.getString(1), rs.getString(2), rs.getString(3));
+		}
 	}
 	
-	//test updateWorksOn() method -- 
-	static void callUpdateWorksOn() throws SQLException {
+	/*Helper method for use cases*/
+	static void callGetCompId() throws SQLException{
 		int rs;
-		
-		System.out.println("Please enter essn to update: ");
-		String essn = keyboard.nextLine();
-		System.out.println("Please enter pno to update: ");
-		String pno = keyboard.nextLine();
-		System.out.println("Please enter new hours: ");
-		String hours = keyboard.nextLine();
-		
-		rs = testObj.updateWorksOn(essn, pno, hours);
-		System.out.println("rs: "+rs);
+		System.out.print("Please enter a company name: ");
+		String comp_name = keyboard.nextLine();
+		rs = testObj.retrieveCompId(comp_name);
+
+		System.out.println(comp_name+": "+rs);
 	}
 	
-	//test deleteFromWorksOn() method -- 
-	static void callDeleteFromWorksOn() throws SQLException {
+	//Test case for Use Case 3
+	static void callInsertBookmark() throws SQLException {
 		int rs;
+		System.out.print("Please enter an opportunity id: ");
+		String opp = keyboard.nextLine();
+		int oppId = Integer.parseInt(opp);
 		
-		System.out.println("Please enter essn of tuple to be deleted: ");
-		String essn = keyboard.nextLine();
-		System.out.println("Please enter pno of tuple to be deleted: ");
-		int pno = keyboard.nextInt();
+		System.out.println("Please enter a user id: ");
+		String useid = keyboard.nextLine();
+		int userId = Integer.parseInt(useid);
 		
-		rs = testObj.deleteFromWorksOn(essn, pno);
-		System.out.println("rs: "+rs);
+		rs = testObj.addBookmark(oppId, userId);
 	}
 	
-	//test addDeptLoc() method -- 
-	static void callAddDeptLoc() throws SQLException {
+	//Test case for Use Case 4
+	static void callUpdateTuitionCost() throws SQLException {
 		int rs;
+		System.out.println("Please enter Graduate oppId: ");
+		String opp = keyboard.nextLine();
+		int oppId = Integer.parseInt(opp);
+		System.out.println("Please enter new tuition: ");
+		String tuit = keyboard.nextLine();
+		Double tuition = Double.parseDouble(tuit);
 		
-		System.out.println("Please enter dnumber to add: ");
-		int dnumber = keyboard.nextInt();
-		System.out.println("Please enter dlocation to add: ");
-		String dlocation = keyboard.nextLine();
-	
-		rs = testObj.addDeptLoc(dnumber, dlocation);
-		System.out.println("rs: "+rs);
+		rs = testObj.updateTuitionCost(tuition, oppId);
+		System.out.println(rs +" updated tuples");
 	}
-		
+	
+
+	//Test case for Use Case 5
+	static void callGetUserBookmarks() throws SQLException{
+		ResultSet rs;
+		System.out.print("Please enter a userId: ");
+		String user = keyboard.nextLine();
+		Integer userId = Integer.parseInt(user);
+		System.out.println("\nList of User Bookmarks " ); 
+		System.out.println("******************************************************************");
+		System.out.printf("%-12s %-12s %-12s %-24s %-5s %-12s \n","Post date" ,"Expir date","Comp_ID", "Description", "Opp_id", "Opp_type");
+		rs = testObj.getUserBookmarks(userId);
+		while(rs.next()){ 
+			System.out.printf("%-12s %-12s	%-5s	%-20s	 %s	%s\n",rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+		}
+	}
+	
+	//Test case for Use Case 6
+	static void callDeleteOpportunity() throws SQLException{
+		int rs;
+		System.out.print("Please enter oppId to be deleted: ");
+		String id = keyboard.nextLine();
+		int oppId = Integer.parseInt(id);
+		rs = testObj.deleteJob(oppId);
+		System.out.println(rs+" Opportunity was deleted");
+	}
+	
 }//MyUtilitiesTest	

@@ -129,7 +129,7 @@
 <!-- Footer -->
 <footer class="w3-container w3-theme-dark">
   <br>
-  <%--<h3>Footer</h3>--%>
+  <%--<h2>Footer</h2>--%>
   <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
     <span class="w3-text w3-theme w3-padding">Go To Top</span>&nbsp;   
     <a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">

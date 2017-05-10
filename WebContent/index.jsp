@@ -125,13 +125,14 @@
 
 <!-- Footer -->
 <footer class="w3-container w3-theme-dark">
-  <h3>Footer</h3>
+  <br>
+  <%--<h2>Footer</h2>--%>
   <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
     <span class="w3-text w3-theme w3-padding">Go To Top</span>&nbsp;   
     <a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">
     <i class="fa fa-chevron-circle-up"></i></span></a>
   </div>
-  <p>Created by Ryan Bolen, Jayme Greer, Carson Ketter, Nathan Kosylo, and Caleb Ice for CSCI 367 Spring 2017 using W3schools Templates</p>
+  <p>Created by Ryan Bolen, Jayme Greer, Carson Ketter, Nathan Kosylo, and Caleb Ice for CSCI 367 Spring 2017 using W3Schools Templates</p>
 </footer>
 
 <!-- Script for Sidebar-->

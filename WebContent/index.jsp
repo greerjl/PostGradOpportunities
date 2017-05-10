@@ -84,9 +84,8 @@
   <div class="w3-card-2 w3-container" style="min-height:460px">
   <h3>Reports</h3><br>
   <i class="fa fa-bar-chart w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
-  <p>Create lists based off of parameters</p>
-  <p>Friendly view for understanding</p>
-  <p>Aides in data analysis</p>
+  <p>View Bookmarks</p>
+  <p>View All Full Time Jobs</p>
   </div>
 </div>
 
@@ -94,9 +93,8 @@
   <div class="w3-card-2 w3-container" style="min-height:460px">
   <h3>Insert</h3><br>
   <i class="fa fa-plus-square w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
-  <p>Add new data easily</p>
-  <p>Select table to add</p>
-  <p>No need to know SQL</p>
+  <p>Add new job</p>
+  <p>Add bookmark</p>
   </div>
 </div>
 
@@ -104,9 +102,8 @@
   <div class="w3-card-2 w3-container" style="min-height:460px">
   <h3>Update</h3><br>
   <i class="fa fa-pencil-square-o w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
-  <p>Change data with ease</p>
-  <p>Quickly update when new data arrives</p>
-  <p>Available for all tables</p>
+  <p>Change graduate school tuition</p>
+  <p>Delete a job when it's been filled</p>
   </div>
 </div>
 </div>
